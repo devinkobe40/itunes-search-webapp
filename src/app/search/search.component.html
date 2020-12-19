@@ -1,0 +1,42 @@
+<div class="center">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Search.....</mat-label>
+        <input matInput placeholder="Search Music">
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+      <button class="btn" mat-raised-button color="primary">
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
+      <h3>
+        Search results for <q cite="">Dabin</q>
+      </h3>
+</div>
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let result of results">
+
+      <mat-card tabindex="0">
+        <mat-card-header>
+          <img mat-card-avatar src="{{result.artworkUrl30}}" alt="{{result.trackName}}">
+          <mat-card-title>{{result.trackName}}</mat-card-title>
+          <mat-card-subtitle>{{result.artistName}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{result.artworkUrl100}}" alt="{{result.trackName}}">
+        <mat-card-content>
+          <p>
+            <audio controls src="{{result.previewUrl}}">
+              Your browser does not support the audio tag.
+            </audio>
+          </p>
+        </mat-card-content>
+        <mat-card-footer>
+          <span>Price: {{ result.trackPrice | currency }}</span> <br>
+          <span>Genre: {{ result.primaryGenreName }}</span>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

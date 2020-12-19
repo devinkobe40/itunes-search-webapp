@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+$background: #512DA8;
+
+html, body { height: 100%; }
+body {
+   margin: 0;
+   // font-family: Roboto, "Helvetica Neue", sans-serif;
+   font-family: 'Raleway', sans-serif;
+ }
+
+ .container {
+    margin: 20px;
+    display:flex;
+ }
+
+ .flex-spacer {
+  flex: 1 1 auto;
+}
+
+.half-width {
+  width: 45%;
+}
+
+.icon-med {
+  font-size: 30px;
+}
+
+.icon-lg {
+  font-size: 75px;
+}
