@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Result } from '../interface/result';
+import { Results } from '../interface/search-results';
 
 import { SearchService } from '../services/search.service';
 
@@ -11,7 +11,9 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  results : Result[] = [];
+  results = <Results>{ resultCount: 0, results: [] };
+
+  term: string = "";
 
   constructor(
     private searchService: SearchService
@@ -21,10 +23,19 @@ export class SearchComponent implements OnInit {
       this.getSearchResults();
   }
 
+  search(term: string): void {
+    console.log(term);
+  }
+
   getSearchResults(): void {
     this.searchService.getSearchResults().subscribe(
-      (result) => {this.results = result;
-      console.log(this.results);}
+      (result) => {
+        setTimeout(() => {
+          this.results = result;
+          console.log("search results: ",this.results.resultCount)
+          console.log("items: ",this.results.results);
+        }, 2000);
+      }
     );
   }
 

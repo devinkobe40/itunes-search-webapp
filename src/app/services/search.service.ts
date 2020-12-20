@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { Result } from '../interface/result';
+import { Results } from '../interface/search-results';
 
 import { searchUrl } from '../api/url';
 
@@ -17,8 +17,8 @@ export class SearchService {
     private http: HttpClient
   ) { }
 
-  getSearchResults(): Observable<Result[]> {
-    return this.http.get<Result[]>(searchUrl + 'results');
+  getSearchResults(): Observable<Results> {
+    return this.http.get<Results>(searchUrl);
   }
 
 }

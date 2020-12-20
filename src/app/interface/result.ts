@@ -31,3 +31,6 @@ export interface Result {
   "primaryGenreName": string;
   "isStreamable": boolean;
 }
+export interface ResultCount {
+  "resultCount": number;
+}
