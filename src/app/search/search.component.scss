@@ -10,12 +10,16 @@
   text-align: center;
 }
 
-audio {
-  width: 200px;
-}
+// audio {
+//   width: 220px;
+// }
 
 .content {
     padding: 16px;
+}
+
+.space {
+  padding-top: 35vh;
 }
 
 .content > mat-card {

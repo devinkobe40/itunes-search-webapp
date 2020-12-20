@@ -11,7 +11,7 @@ import { searchUrl } from '../api/url';
 })
 export class SearchService {
 
-
+  regex: RegExp = /(\s+)/gi;
 
   constructor(
     private http: HttpClient
@@ -19,6 +19,13 @@ export class SearchService {
 
   getSearchResults(): Observable<Results> {
     return this.http.get<Results>(searchUrl);
+  }
+
+  searchResults(term: string): Observable<Results> {
+    
+    const url = searchUrl + 'search?term=' + term.toLowerCase().replace(this.regex, '+');
+
+    return this.http.get<Results>(url);
   }
 
 }

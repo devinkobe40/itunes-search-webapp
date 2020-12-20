@@ -1,14 +1,20 @@
 $background-verydark: #72009c;
 
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
 .footer {
   color: floralwhite;
   background-color: $background-verydark;
-  padding-bottom: 2.5rem;
-  position: static;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
-  min-height: 13vh;
+  // padding-bottom: 2.5rem;
+  // position: static;
+  // bottom: 0;
+  // width: 100%;
+  // height: 2.5rem;
+  // min-height: 13vh;
+  @include zero-margin(20px, 0px);
 }
 
 .media-pos {

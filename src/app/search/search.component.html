@@ -1,4 +1,4 @@
-<div *ngIf="results.results.length === 0">
+<div *ngIf="loading">
   <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
 </div>
 <div class="center">
@@ -12,9 +12,15 @@
         <mat-icon matSuffix>search</mat-icon>
       </button>
 
-      <h3>
-        Search results for <q cite="">Dabin</q>. Found : {{results.resultCount}}
+      <h3 *ngIf="searchQuery">
+        Search results for <q cite="">{{term}}</q>. Found : {{results.resultCount}}
       </h3>
+        <div *ngIf="limit">
+          <p>
+            Due to limitation this search can only search up to 50 items.
+          </p>
+          <div class="space"></div>
+        </div>
 </div>
 <div class="content" *ngIf="results.results.length > 0">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
@@ -26,17 +32,21 @@
           <mat-card-title>{{result.trackName}}</mat-card-title>
           <mat-card-subtitle>{{result.artistName}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{result.artworkUrl100}}" alt="{{result.trackName}}">
+        <img height="150px" mat-card-image src="{{result.artworkUrl60}}" alt="{{result.trackName}}">
         <mat-card-content>
           <p>
             <audio controls src="{{result.previewUrl}}">
               Your browser does not support the audio tag.
             </audio>
           </p>
+          <p>
+            <span>Price: {{ result.trackPrice | currency }}</span>
+          </p>
+          <p>
+            <span>Genre: {{ result.primaryGenreName }}</span>
+          </p>
         </mat-card-content>
         <mat-card-footer>
-          <span>Price: {{ result.trackPrice | currency }}</span> <br>
-          <span>Genre: {{ result.primaryGenreName }}</span>
         </mat-card-footer>
       </mat-card>
     </div>
