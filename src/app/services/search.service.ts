@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Results } from '../interface/search-results';
 
+import { ErrorHandlingService } from './error-handling.service';
 import { searchUrl } from '../api/url';
 
 @Injectable({
@@ -14,7 +17,8 @@ export class SearchService {
   regex: RegExp = /(\s+)/gi;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private errorHandlingService: ErrorHandlingService
   ) { }
 
   getSearchResults(): Observable<Results> {
@@ -22,10 +26,16 @@ export class SearchService {
   }
 
   searchResults(term: string): Observable<Results> {
-    
+    console.log(term === "");
+
+    // if (term === "") {
+    //   return of();
+    // }
+
     const url = searchUrl + 'search?term=' + term.toLowerCase().replace(this.regex, '+');
 
-    return this.http.get<Results>(url);
+    return this.http.get<Results>(url)
+           .pipe(catchError(this.errorHandlingService.handleError));
   }
 
 }

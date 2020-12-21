@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Results } from '../interface/search-results';
 
 import { SearchService } from '../services/search.service';
@@ -13,10 +16,15 @@ export class SearchComponent implements OnInit {
 
   results = <Results>{ resultCount: 0, results: [] };
 
+  //icons
+  faHeart = faHeart;
+  faShoppingCart = faShoppingCart;
+
   term: string = "";
   limit = true;
   searchQuery = false;
   loading = false;
+  errMess: string = "";
 
   constructor(
     private searchService: SearchService
@@ -24,6 +32,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
       // this.getSearchResults();
+      console.log("length: ",this.errMess.length);
 
   }
 
@@ -33,12 +42,19 @@ export class SearchComponent implements OnInit {
     this.searchQuery = true;
     this.searchService.searchResults(term).subscribe(
       (result) => {
+        this.errMess = "";
         this.results = result;
+
 
         setTimeout(() => {
           this.loading = false;
           this.searchQuery = false;
         }, 2000);
+      },
+      (errmes) => {
+        this.loading = false;
+        this.errMess = <any>errmes;
+        this.results = <Results>{ resultCount: 0, results: [] };
       }
     );
   }
