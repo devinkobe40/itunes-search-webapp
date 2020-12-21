@@ -27,10 +27,12 @@ export class SearchService {
 
   searchResults(term: string): Observable<Results> {
     console.log(term === "");
+    console.log("white space length: ", term.length);
 
-    // if (term === "") {
-    //   return of();
-    // }
+    //handling error cause of white spaces.
+    if ( term === "" || term.replace(this.regex, '+') === "+") {
+      return of();
+    }
 
     const url = searchUrl + 'search?term=' + term.toLowerCase().replace(this.regex, '+');
 

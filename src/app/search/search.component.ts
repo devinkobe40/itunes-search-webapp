@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   faShoppingCart = faShoppingCart;
 
   term: string = "";
-  limit = true;
+  noResults = false;
   searchQuery = false;
   loading = false;
   errMess: string = "";
@@ -31,20 +31,37 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      // this.getSearchResults();
-      console.log("length: ",this.errMess.length);
-
   }
 
   search(term: string): void {
-    this.limit = false;
+
+    // reinitializes the boolean to hide the no results message
+    this.noResults = false;
+
     this.loading = true;
+
+    // If the function returns a null cancelling the progress bar
+
+    if (term === "") {
+      this.loading = false;      
+    }
+
+
     this.searchQuery = true;
     this.searchService.searchResults(term).subscribe(
       (result) => {
+
+        // reinitializes the progress bar if theres a return value
+        this.loading = true;
+
+        // erases the error message if theres no error
         this.errMess = "";
         this.results = result;
 
+        // will activate if the query found no items
+        if (this.results.results.length === 0) {
+          this.noResults = true;
+        }
 
         setTimeout(() => {
           this.loading = false;
@@ -58,17 +75,5 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-
-  // getSearchResults(): void {
-  //   this.searchService.getSearchResults().subscribe(
-  //     (result) => {
-  //       setTimeout(() => {
-  //         this.results = result;
-  //         console.log("search results: ",this.results.resultCount)
-  //         console.log("items: ",this.results.results);
-  //       }, 2000);
-  //     }
-  //   );
-  // }
 
 }

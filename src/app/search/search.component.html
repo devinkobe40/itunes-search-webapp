@@ -12,7 +12,7 @@
         <mat-icon matSuffix>search</mat-icon>
       </button>
 
-        <div *ngIf="limit">
+        <div>
           <p>
             Due to limitation this search can only search up to 50 items.
           </p>
@@ -24,7 +24,17 @@
       <h2>Error</h2>
       <h4>{{errMess}}</h4>
 </div>
+
+<div class="center" *ngIf="noResults">
+  <h1>No such track/artist exist in the server!</h1>
+</div>
+
+<div class="center" *ngIf="results.results.length > 0">
+  <q>Results: {{results.results.length}}</q>
+</div>
+
 <div class="content" *ngIf="results.results.length > 0">
+
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let result of results.results">
 
