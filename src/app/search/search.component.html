@@ -35,10 +35,10 @@
 
 <div class="content" *ngIf="results.results.length > 0">
 
-  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" >
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let result of results.results">
 
-      <mat-card tabindex="0">
+      <mat-card tabindex="0" [@expand]="true">
         <mat-card-header>
           <img mat-card-avatar src="{{result.artworkUrl30}}" alt="{{result.trackName}}">
           <mat-card-title>{{result.trackName}}</mat-card-title>

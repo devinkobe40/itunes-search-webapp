@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,16 @@ import { SearchService } from '../services/search.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  animations: [
+    trigger('expand', [
+        state('*', style({ opacity: 1, transform: 'translateX(0)' })),
+        transition(':enter', [
+            style({ transform: 'translateY(-50%)', opacity:0 }),
+            animate('500ms ease-in', style({ opacity: 1, transform: 'translateX(0)' }))
+        ])
+    ]),
+  ]
 })
 export class SearchComponent implements OnInit {
 
