@@ -26,9 +26,6 @@ export class SearchService {
   }
 
   searchResults(term: string): Observable<Results> {
-    console.log(term === "");
-    console.log("white space length: ", term.length);
-
     //handling error cause of white spaces.
     if ( term === "" || term.replace(this.regex, '+') === "+") {
       return of();

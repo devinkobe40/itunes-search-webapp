@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+
 import { Results } from '../interface/search-results';
 
 import { SearchService } from '../services/search.service';
@@ -19,6 +21,7 @@ export class SearchComponent implements OnInit {
   //icons
   faHeart = faHeart;
   faShoppingCart = faShoppingCart;
+  faPlayCircle = faPlayCircle;
 
   term: string = "";
   noResults = false;
@@ -43,7 +46,7 @@ export class SearchComponent implements OnInit {
     // If the function returns a null cancelling the progress bar
 
     if (term === "") {
-      this.loading = false;      
+      this.loading = false;
     }
 
 
