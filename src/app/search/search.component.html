@@ -56,7 +56,9 @@
         <mat-card-actions>
           <button mat-button><fa-icon [icon]="faHeart"></fa-icon></button>
           <button mat-button><fa-icon [icon]="faShoppingCart"></fa-icon></button>
-          <button mat-button><a href="{{result.collectionViewUrl}}" target="_blank" rel="noopener noreferrer"><fa-icon [icon]="faPlayCircle"></fa-icon></a></button>
+          <a mat-button href="{{result.collectionViewUrl}}" target="_blank" rel="noopener noreferrer">
+            <fa-icon [icon]="faPlayCircle"></fa-icon>
+          </a>
         </mat-card-actions>
       </mat-card>
     </div>
